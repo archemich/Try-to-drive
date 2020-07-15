@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/car.png-b2ca7bee34d0a72d15f9ed0bc2f7996f.stex"
+path="res://.import/car.png-d410bfea32601077d7d6bed920aa056d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/car.png"
-dest_files=[ "res://.import/car.png-b2ca7bee34d0a72d15f9ed0bc2f7996f.stex" ]
+source_file="res://models/cars/car.png"
+dest_files=[ "res://.import/car.png-d410bfea32601077d7d6bed920aa056d.stex" ]
 
 [params]
 
