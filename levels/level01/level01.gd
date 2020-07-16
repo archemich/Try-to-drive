@@ -25,9 +25,7 @@ func startLevel():
 
 
 func stopLevel():
-	#$GeneratorTimer.stop()
-	#$ScoreTimer.stop()
-	#$Player/Timer.stop()
+	$CanvasLayer/RestartButton.show()
 	get_tree().paused = true
 	
 
@@ -42,3 +40,10 @@ func _on_ScoreTimer_timeout():
 
 func _on_Player_hit():
 	stopLevel() # Replace with function body.
+
+
+func _on_RestartButton_pressed():
+	get_tree().reload_current_scene()
+	$CanvasLayer/RestartButton.hide()
+	get_tree().paused = false
+	
