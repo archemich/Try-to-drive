@@ -13,7 +13,8 @@ func generateObstacle():
 	$GeneratorPath/ObstacleSpawnLocation.offset = randi()
 	var obstacle = Obstacle.instance()
 	add_child(obstacle)
-	obstacle.position = $GeneratorPath/ObstacleSpawnLocation.position
+	obstacle.position.x = $GeneratorPath/ObstacleSpawnLocation.position.x
+	obstacle.position.y = $Player.position.y - 1024
 	
 	
 func startLevel():
@@ -24,10 +25,10 @@ func startLevel():
 
 
 func stopLevel():
-	$GeneratorTimer.stop()
-	$ScoreTimer.stop()
-	$Player/Timer.stop()
-	get_tree().call_group("Obstacles","stopMoving")
+	#$GeneratorTimer.stop()
+	#$ScoreTimer.stop()
+	#$Player/Timer.stop()
+	get_tree().paused = true
 	
 
 func _on_GeneratorTimer_timeout():
@@ -36,7 +37,7 @@ func _on_GeneratorTimer_timeout():
 
 func _on_ScoreTimer_timeout():
 	score += 1
-	$Score.text = ("%s" %  str(score))
+	$CanvasLayer/Score.text = ("%s" %  str(score))
 
 
 func _on_Player_hit():

@@ -2,7 +2,7 @@ extends Area2D
 
 signal hit
 
-const SPEEDX = 600
+const SPEED = Vector2(600,400)
 const MIN_RANDOM_MOVE = 100
 const MAX_RANDOM_MOVE = 400 
 
@@ -16,6 +16,7 @@ func _ready():
 
 func _process(delta):
 	position.x += (velx+random_move) * delta
+	position.y -= SPEED.y * delta
 	
 
 func start():
@@ -28,12 +29,12 @@ func _input(e):
 		if e.position.y >= screen_size.y/2:
 			if e.position.x < screen_size.x/2:
 				if e.pressed:
-					velx = SPEEDX * -1
+					velx = SPEED.x * -1
 				else:
 					velx = 0
 			else:
 				if e.pressed:
-					velx = SPEEDX
+					velx = SPEED.x
 				else:
 					velx = 0
 

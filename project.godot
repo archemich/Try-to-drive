@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Player="*res://scripts/player.gd"
-Obstacle="*res://scripts/obstacle.gd"
 
 [display]
 
