@@ -8,6 +8,10 @@ var score = 0
 func _ready():
 	randomize()
 	
+func _process(delta):
+	var x = $Player.position.x
+	if (x >= 576 || x <= 0):
+		$Player.emit_signal("hit")
 	
 func generateObstacle():
 	$GeneratorPath/ObstacleSpawnLocation.offset = randi()
