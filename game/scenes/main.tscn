@@ -11,5 +11,4 @@ script = ExtResource( 3 )
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-[connection signal="ready" from="Level01" to="." method="_on_Level01_ready"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

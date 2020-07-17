@@ -23,6 +23,10 @@ config/icon="res://icon.png"
 
 Player="*res://scripts/player.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=576
@@ -93,6 +97,7 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-quality/intended_usage/framebuffer_allocation.mobile=2
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
+quality/filters/anisotropic_filter_level=2
 environment/default_environment="res://default_env.tres"

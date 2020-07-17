@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Grey.png-a618ebee3a7fc0c06e856350a44ba70d.stex"
+path="res://.import/asphalt.png-d0ea80d0adcef155dd06d077a0433060.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/obstacles/Grey.png"
-dest_files=[ "res://.import/Grey.png-a618ebee3a7fc0c06e856350a44ba70d.stex" ]
+source_file="res://models/road/asphalt.png"
+dest_files=[ "res://.import/asphalt.png-d0ea80d0adcef155dd06d077a0433060.stex" ]
 
 [params]
 

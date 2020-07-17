@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/level01/level01.gd" type="Script" id=1]
-[ext_resource path="res://scenes/obstacle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://models/road/asphalt.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/roboto-regular.tres" type="DynamicFont" id=4]
 [ext_resource path="res://themes/main_theme.tres" type="Theme" id=5]
-[ext_resource path="res://img/textures/asphalt2.jpg" type="Texture" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -14,7 +13,6 @@ _data = {
 
 [node name="Level01" type="Node"]
 script = ExtResource( 1 )
-Obstacle = ExtResource( 2 )
 
 [node name="GeneratorPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
@@ -29,7 +27,6 @@ wait_time = 3.0
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 288, 840 )
-scale = Vector2( 0.3, 0.3 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -640, 53.3357 )
@@ -77,8 +74,9 @@ __meta__ = {
 motion_mirroring = Vector2( 0, 1024 )
 
 [node name="Background1" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
-position = Vector2( 288, 512 )
-texture = ExtResource( 6 )
+position = Vector2( 286.837, 512 )
+scale = Vector2( 1.52191, 1.42222 )
+texture = ExtResource( 2 )
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="GeneratorTimer" to="." method="_on_GeneratorTimer_timeout"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]

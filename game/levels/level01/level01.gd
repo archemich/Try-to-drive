@@ -1,11 +1,13 @@
 extends Node
 
-export (PackedScene) var Obstacle
 
 var score = 0
-
+var car_script
+var car_model
 
 func _ready():
+	car_script = preload("res://scripts/npc_car.gd")
+	car_model = preload("res://models/cars/car.tscn")
 	randomize()
 	
 func _process(delta):
@@ -14,11 +16,14 @@ func _process(delta):
 		$Player.emit_signal("hit")
 	
 func generateObstacle():
+	
 	$GeneratorPath/ObstacleSpawnLocation.offset = randi()
-	var obstacle = Obstacle.instance()
-	add_child(obstacle)
-	obstacle.position.x = $GeneratorPath/ObstacleSpawnLocation.position.x
-	obstacle.position.y = $Player.position.y - 1024
+	var car = car_model.instance()
+	car.set_script(car_script)
+	add_child(car)
+	car.position.x = $GeneratorPath/ObstacleSpawnLocation.position.x
+	car.position.y = $Player.position.y - 1024
+	
 	
 	
 func startLevel():
