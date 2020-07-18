@@ -25,17 +25,6 @@ curve = SubResource( 1 )
 process_mode = 0
 wait_time = 3.0
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 288, 840 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( -640, 53.3357 )
-current = true
-limit_left = 0
-limit_right = 576
-offset_v = -1.0
-editor_draw_drag_margin = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RestartButton" type="Button" parent="CanvasLayer"]
@@ -77,7 +66,10 @@ motion_mirroring = Vector2( 0, 1024 )
 position = Vector2( 286.837, 512 )
 scale = Vector2( 1.52191, 1.42222 )
 texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 288, 840 )
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="GeneratorTimer" to="." method="_on_GeneratorTimer_timeout"]
-[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]

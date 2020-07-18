@@ -1,12 +1,8 @@
-extends StaticBody2D
+extends RigidBody2D
 
-var speed
-const MAX_SPEED = 300
-const MIN_SPEED = 200
+
+const MAX_VEL = 300
+const MIN_VEL = 200
 
 func _ready():
-	speed = randi() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED
-
-
-func _process(delta):
-	position.y -= speed * delta
+	linear_velocity.y = randi() % (MAX_VEL - MIN_VEL) + MIN_VEL * -1

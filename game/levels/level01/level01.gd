@@ -10,11 +10,7 @@ func _ready():
 	car_model = preload("res://models/cars/car.tscn")
 	randomize()
 	
-func _process(delta):
-	var x = $Player.position.x
-	if (x >= 576 || x <= 0):
-		$Player.emit_signal("hit")
-	
+
 func generateObstacle():
 	
 	$GeneratorPath/ObstacleSpawnLocation.offset = randi()
@@ -22,7 +18,7 @@ func generateObstacle():
 	car.set_script(car_script)
 	add_child(car)
 	car.position.x = $GeneratorPath/ObstacleSpawnLocation.position.x
-	car.position.y = $Player.position.y - 1024
+	car.position.y = $Player/PlayerCar.position.y - 1024
 	
 	
 	
@@ -35,7 +31,8 @@ func startLevel():
 
 func stopLevel():
 	$CanvasLayer/RestartButton.show()
-	get_tree().paused = true
+	$GeneratorTimer.stop()
+	$ScoreTimer.stop()
 	
 
 func _on_GeneratorTimer_timeout():
@@ -53,6 +50,6 @@ func _on_Player_hit():
 
 func _on_RestartButton_pressed():
 	get_tree().reload_current_scene()
+	startLevel()
 	$CanvasLayer/RestartButton.hide()
-	get_tree().paused = false
 	

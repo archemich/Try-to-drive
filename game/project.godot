@@ -19,10 +19,6 @@ config/name="Try-to-drive"
 run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Player="*res://scripts/player.gd"
-
 [debug]
 
 settings/stdout/print_fps=true
@@ -94,6 +90,10 @@ ui_end={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+2d/default_gravity=0
 
 [rendering]
 
