@@ -8,6 +8,7 @@ height = 111.104
 
 [node name="Car" type="RigidBody2D"]
 mass = 15.0
+can_sleep = false
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )

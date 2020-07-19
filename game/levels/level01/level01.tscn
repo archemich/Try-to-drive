@@ -1,21 +1,94 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://levels/level01/level01.gd" type="Script" id=1]
 [ext_resource path="res://models/road/asphalt.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/roboto-regular.tres" type="DynamicFont" id=4]
 [ext_resource path="res://themes/main_theme.tres" type="Theme" id=5]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+
+var score = 0
+var car_script
+var car_model
+var npc_cars = []
+
+var current_car = 0
+
+func _ready():
+	randomize()
+	car_script = preload(\"res://scripts/npc_car.gd\")
+	car_model = preload(\"res://models/cars/car.tscn\")
+	for i in 10:
+		npc_cars.append(car_model.instance())
+	
+	
+
+func _process(delta):
+	G.SPEED.y += 4 * delta
+	
+
+func generateObstacle():
+	$GeneratorPath/ObstacleSpawnLocation.offset = randi()
+	npc_cars[current_car].queue_free()
+	npc_cars[current_car] = car_model.instance()
+	npc_cars[current_car].set_script(car_script)
+	npc_cars[current_car].position.x = $GeneratorPath/ObstacleSpawnLocation.position.x
+	npc_cars[current_car].position.y = $Player/PlayerCar.position.y - 1024
+	add_child(npc_cars[current_car])
+	current_car += 1
+	if current_car >= npc_cars.size():
+		current_car = 0
+	print(get_tree().get_node_count())
+	
+	
+	
+	
+func startLevel():
+	generateObstacle()
+	$GeneratorTimer.start()
+	$ScoreTimer.start()
+	$Player.start()
+
+
+func stopLevel():
+	$CanvasLayer/RestartButton.show()
+	$GeneratorTimer.stop()
+	$ScoreTimer.stop()
+	
+
+func _on_GeneratorTimer_timeout():
+	generateObstacle()
+
+
+func _on_ScoreTimer_timeout():
+	score += 1
+	$CanvasLayer/Score.text = (\"%s\" %  str(score))
+
+
+func _on_Player_hit():
+	stopLevel() # Replace with function body.
+
+
+func _on_RestartButton_pressed():
+	get_tree().reload_current_scene()
+	G.SPEED = G.DefaultSPEED
+	startLevel()
+	$CanvasLayer/RestartButton.hide()
+	
+"
+
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 576, 0 )
 }
 
 [node name="Level01" type="Node"]
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="GeneratorPath" type="Path2D" parent="."]
-curve = SubResource( 1 )
+curve = SubResource( 2 )
 
 [node name="ObstacleSpawnLocation" type="PathFollow2D" parent="GeneratorPath"]
 
@@ -23,7 +96,7 @@ curve = SubResource( 1 )
 
 [node name="GeneratorTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 3.0
+wait_time = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

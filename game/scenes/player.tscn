@@ -11,13 +11,11 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="PlayerCar" parent="." instance=ExtResource( 1 )]
 continuous_cd = 1
 contacts_reported = 1
 contact_monitor = true
-can_sleep = false
 linear_velocity = Vector2( 0, -400 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCar"]
@@ -25,5 +23,6 @@ current = true
 limit_left = 0
 limit_right = 576
 offset_v = -1.0
+[connection signal="hit" from="." to="." method="_on_Player_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="PlayerCar" to="." method="_on_PlayerCar_body_entered"]
